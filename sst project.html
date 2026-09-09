@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Saving Hub | UAE</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f3f9fb;
+        color: #12343b;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+        background: linear-gradient(135deg, #006d77, #008c95);
+        color: white;
+        padding: 18px 6%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .logo-icon {
+        width: 42px;
+        height: 42px;
+        background: white;
+        color: #008c95;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+    }
+
+    nav {
+        display: flex;
+        gap: 25px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        opacity: 0.9;
+    }
+
+    nav a:hover {
+        opacity: 1;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+        padding: 70px 6%;
+        background:
+            linear-gradient(rgba(0,80,90,0.85), rgba(0,110,120,0.9)),
+            radial-gradient(circle at top right, #7dd3fc, transparent 40%);
+        color: white;
+    }
+
+    .hero-content {
+        max-width: 900px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 6vw, 70px);
+        margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+        color: #8be3df;
+    }
+
+    .hero p {
+        font-size: 19px;
+        line-height: 1.7;
+        opacity: 0.95;
+        margin-bottom: 30px;
+    }
+
+    .button {
+        border: none;
+        padding: 14px 24px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .button-primary {
+        background: #8be3df;
+        color: #064e56;
+    }
+
+    .button-primary:hover {
+        transform: translateY(-2px);
+        background: white;
+    }
+
+    /* ================= MAIN ================= */
+
+    main {
+        width: 88%;
+        max-width: 1300px;
+        margin: 45px auto;
+    }
+
+    .section-title {
+        margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+    }
+
+    .section-title p {
+        color: #668187;
+        margin-top: 6px;
+    }
+
+    /* ================= CARDS ================= */
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-bottom: 35px;
+    }
+
+    .card {
+        background: white;
+        padding: 24px;
+        border-radius: 18px;
+        box-shadow: 0 5px 20px rgba(0,60,70,0.08);
+    }
+
+    .card-label {
+        color: #71888e;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .card-value {
+        font-size: 32px;
+        font-weight: bold;
+        color: #006d77;
+    }
+
+    .card-small {
+        margin-top: 8px;
+        color: #36a269;
+        font-size: 13px;
+    }
+
+    /* ================= DASHBOARD ================= */
+
+    .dashboard {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 20px;
+        margin-bottom: 35px;
+    }
+
+    .panel {
+        background: white;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 5px 20px rgba(0,60,70,0.08);
+    }
+
+    .panel h3 {
+        margin-bottom: 20px;
+        font-size: 21px;
+    }
+
+    /* ================= TANK ================= */
+
+    .tank-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        min-height: 260px;
+    }
+
+    .tank {
+        width: 150px;
+        height: 230px;
+        border: 6px solid #006d77;
+        border-radius: 18px;
+        position: relative;
+        overflow: hidden;
+        background: #eefafa;
+    }
+
+    .water {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 76%;
+        background: linear-gradient(#38bdf8, #0077b6);
+        transition: height 1s ease;
+    }
+
+    .water::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -20%;
+        width: 140%;
+        height: 20px;
+        background: rgba(255,255,255,0.25);
+        border-radius: 50%;
+    }
+
+    .tank-info h4 {
+        font-size: 38px;
+        color: #006d77;
+    }
+
+    .tank-info p {
+        color: #71888e;
+        margin-top: 8px;
+    }
+
+    /* ================= AI ================= */
+
+    .ai-box {
+        background: linear-gradient(135deg, #ecfeff, #e0f2fe);
+        border: 1px solid #b6e4e8;
+        border-radius: 15px;
+        padding: 20px;
+    }
+
+    .ai-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        color: #006d77;
+        margin-bottom: 12px;
+    }
+
+    .ai-box p {
+        line-height: 1.6;
+        color: #31565d;
+        margin-bottom: 15px;
+    }
+
+    /* ================= RECOVERY ================= */
+
+    .recovery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .recovery {
+        padding: 18px;
+        border-radius: 14px;
+        background: #f6fbfc;
+    }
+
+    .recovery-icon {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .recovery h4 {
+        font-size: 25px;
+        color: #006d77;
+    }
+
+    .recovery p {
+        color: #71888e;
+        font-size: 13px;
+    }
+
+    /* ================= IRRIGATION ================= */
+
+    .irrigation-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 17px 0;
+        border-bottom: 1px solid #e8f0f1;
+    }
+
+    .irrigation-row:last-child {
+        border-bottom: none;
+    }
+
+    .status {
+        padding: 7px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .status-good {
+        background: #dcfce7;
+        color: #15803d;
+    }
+
+    .status-warning {
+        background: #fef3c7;
+        color: #a16207;
+    }
+
+    .toggle {
+        width: 45px;
+        height: 24px;
+        background: #cbd5e1;
+        border-radius: 20px;
+        position: relative;
+        cursor: pointer;
+        border: none;
+    }
+
+    .toggle::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: white;
+        border-radius: 50%;
+        left: 3px;
+        top: 3px;
+        transition: 0.2s;
+    }
+
+    .toggle.active {
+        background: #008c95;
+    }
+
+    .toggle.active::after {
+        left: 24px;
+    }
+
+    /* ================= CHART ================= */
+
+    .chart {
+        height: 220px;
+        display: flex;
+        align-items: end;
+        gap: 12px;
+        padding-top: 20px;
+    }
+
+    .bar-container {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        position: relative;
+    }
+
+    .bar {
+        width: 65%;
+        background: linear-gradient(#38bdf8, #006d77);
+        border-radius: 7px 7px 0 0;
+        transition: height 1s;
+    }
+
+    .bar-label {
+        position: absolute;
+        bottom: -22px;
+        font-size: 11px;
+        color: #71888e;
+    }
+
+    /* ================= ALERT ================= */
+
+    .alert {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: #fff7ed;
+        border-left: 5px solid #f97316;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+    }
+
+    .alert strong {
+        color: #c2410c;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background: #063b43;
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 70px;
+    }
+
+    footer p {
+        opacity: 0.8;
+        margin-top: 8px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width: 900px) {
+        .cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .dashboard {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media(max-width: 600px) {
+        nav {
+            display: none;
+        }
+
+        .cards {
+            grid-template-columns: 1fr;
+        }
+
+        .recovery-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .tank-area {
+            flex-direction: column;
+        }
+
+        main {
+            width: 92%;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">💧</div>
+        Water Saving Hub
+    </div>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#irrigation">Irrigation</a>
+        <a href="#recovery">Recovery</a>
+        <a href="#alerts">Alerts</a>
+    </nav>
+</header>
+
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Save Every <span>Drop.</span></h1>
+
+        <p>
+            A smart UAE water-management system that detects
+            unnecessary water use, recovers suitable water,
+            monitors treatment and builds an emergency reserve
+            for the future.
+        </p>
+
+        <button class="button button-primary"
+                onclick="scrollToDashboard()">
+            Open Water Dashboard
+        </button>
+    </div>
+</section>
+
+
+<main id="dashboard">
+
+    <div class="section-title">
+        <h2>Water Intelligence Dashboard</h2>
+        <p>Live simulation of your Water Saving Hub.</p>
+    </div>
+
+
+    <!-- TOP CARDS -->
+
+    <section class="cards">
+
+        <div class="card">
+            <div class="card-label">WATER SAVED TODAY</div>
+            <div class="card-value">
+                <span id="savedToday">1,280</span> L
+            </div>
+            <div class="card-small">↑ 18% from yesterday</div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">MONTHLY SAVINGS</div>
+            <div class="card-value">
+                <span id="monthlySaved">36,400</span> L
+            </div>
+            <div class="card-small">Excellent performance</div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">WATER QUALITY</div>
+            <div class="card-value">GOOD</div>
+            <div class="card-small">🟢 Sensors normal</div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">WATER HUB</div>
+            <div class="card-value">ONLINE</div>
+            <div class="card-small">🟢 All systems operational</div>
+        </div>
+
+    </section>
+
+
+    <!-- TANK + AI -->
+
+    <section class="dashboard">
+
+        <div class="panel">
+            <h3>💧 Smart Water Reserve</h3>
+
+            <div class="tank-area">
+
+                <div class="tank">
+                    <div class="water" id="waterLevel"></div>
+                </div>
+
+                <div class="tank-info">
+                    <h4 id="tankPercent">76%</h4>
+                    <p>Tank capacity</p>
+
+                    <br>
+
+                    <h4 id="tankLitres">24,800 L</h4>
+                    <p>Available treated water</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="panel">
+            <h3>🤖 AI Water Advisor</h3>
+
+            <div class="ai-box">
+
+                <div class="ai-title">
+                    🧠 AI Recommendation
+                </div>
+
+                <p id="aiMessage">
+                    Your irrigation system is using approximately
+                    23% more water than necessary. Soil moisture is
+                    currently sufficient.
+                </p>
+
+                <button class="button button-primary"
+                        onclick="optimizeIrrigation()">
+                    Optimize Irrigation
+                </button>
+
+            </div>
+
+            <br>
+
+            <div class="ai-box">
+                <div class="ai-title">
+                    🌡️ Environmental Analysis
+                </div>
+
+                <p>
+                    Temperature: <strong>39°C</strong><br>
+                    Humidity: <strong>42%</strong><br>
+                    Soil moisture: <strong>68%</strong>
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RECOVERY -->
+
+    <section class="panel" id="recovery">
+
+        <h3>♻️ Water Recovery</h3>
+
+        <div class="recovery-grid">
+
+            <div class="recovery">
+                <div class="recovery-icon">🌱</div>
+                <h4>420 L</h4>
+                <p>Irrigation recovery</p>
+            </div>
+
+            <div class="recovery">
+                <div class="recovery-icon">❄️</div>
+                <h4>610 L</h4>
+                <p>Cooling-water recovery</p>
+            </div>
+
+            <div class="recovery">
+                <div class="recovery-icon">💧</div>
+                <h4>250 L</h4>
+                <p>Runoff recovery</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <br><br>
+
+
+    <!-- IRRIGATION -->
+
+    <section class="panel" id="irrigation">
+
+        <h3>🌱 Smart Irrigation</h3>
+
+        <div class="irrigation-row">
+            <div>
+                <strong>Garden Zone A</strong>
+                <p>Soil moisture: 68%</p>
+            </div>
+
+            <span class="status status-good">
+                OPTIMAL
+            </span>
+
+            <button class="toggle active"
+                    onclick="toggleIrrigation(this)">
+            </button>
+        </div>
+
+
+        <div class="irrigation-row">
+            <div>
+                <strong>Garden Zone B</strong>
+                <p>Soil moisture: 34%</p>
+            </div>
+
+            <span class="status status-warning">
+                NEEDS WATER
+            </span>
+
+            <button class="toggle active"
+                    onclick="toggleIrrigation(this)">
+            </button>
+        </div>
+
+
+        <div class="irrigation-row">
+            <div>
+                <strong>Parking Landscape</strong>
+                <p>Soil moisture: 71%</p>
+            </div>
+
+            <span class="status status-good">
+                OPTIMAL
+            </span>
+
+            <button class="toggle active"
+                    onclick="toggleIrrigation(this)">
+            </button>
+        </div>
+
+    </section>
+
+
+    <br><br>
+
+
+    <!-- CHART -->
+
+    <section class="panel">
+
+        <h3>📊 Weekly Water Savings</h3>
+
+        <div class="chart">
+
+            <div class="bar-container">
+                <div class="bar" style="height:45%"></div>
+                <span class="bar-label">Mon</span>
+            </div>
+
+            <div class="bar-container">
+                <div class="bar" style="height:62%"></div>
+                <span class="bar-label">Tue</span>
+            </div>
+
+            <div class="bar-container">
+                <div class="bar" style="height:50%"></div>
+                <span class="bar-label">Wed</span>
+            </div>
+
+            <div class="bar-container">
+                <div class="bar" style="height:78%"></div>
+                <span class="bar-label">Thu</span>
+            </div>
+
+            <div class="bar-container">
+                <div class="bar" style="height:66%"></div>
+                <span class="bar-label">Fri</span>
+            </div>
+
+            <div class="bar-container">
+                <div class="bar" style="height:88%"></div>
+                <span class="bar-label">Sat</span>
+            </div>
+
+            <div class="bar-container">
+                <div class="bar" style="height:72%"></div>
+                <span class="bar-label">Sun</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <br><br>
+
+
+    <!-- ALERTS -->
+
+    <section class="panel" id="alerts">
+
+        <h3>🚨 System Alerts</h3>
+
+        <div class="alert">
+            <div>⚠️</div>
+
+            <div>
+                <strong>Potential irrigation waste</strong>
+                <p>
+                    Garden Zone B has been running longer
+                    than recommended.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="alert">
+            <div>💧</div>
+
+            <div>
+                <strong>Water recovery available</strong>
+                <p>
+                    250 L of suitable runoff has been detected
+                    and is ready for treatment.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <h2>💧 Water Saving Hub</h2>
+
+    <p>
+        Bank water today. Protect tomorrow.
+    </p>
+
+    <p>
+        UAE Water Sustainability Concept
+    </p>
+</footer>
+
+
+<script>
+
+    /* ================= SCROLL ================= */
+
+    function scrollToDashboard() {
+        document.getElementById("dashboard")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+    }
+
+
+    /* ================= IRRIGATION ================= */
+
+    function toggleIrrigation(button) {
+
+        button.classList.toggle("active");
+
+        if (button.classList.contains("active")) {
+
+            button.parentElement
+                .querySelector(".status")
+                .textContent = "ACTIVE";
+
+        } else {
+
+            button.parentElement
+                .querySelector(".status")
+                .textContent = "PAUSED";
+
+        }
+    }
+
+
+    /* ================= AI OPTIMIZATION ================= */
+
+    function optimizeIrrigation() {
+
+        const message =
+            document.getElementById("aiMessage");
+
+        message.innerHTML =
+            "Optimization complete! Irrigation duration has been reduced. The system estimates approximately <strong>1,100 L</strong> of water could be saved this month.";
+
+        let saved =
+            document.getElementById("savedToday");
+
+        let current =
+            parseInt(saved.textContent.replace(",", ""));
+
+        current += 110;
+
+        saved.textContent =
+            current.toLocaleString();
+
+        alert(
+            "AI optimization activated! 💧\n\n" +
+            "Estimated additional saving: 110 L"
+        );
+    }
+
+
+    /* ================= SIMULATED LIVE DATA ================= */
+
+    setInterval(() => {
+
+        let saved =
+            document.getElementById("savedToday");
+
+        let current =
+            parseInt(saved.textContent.replace(",", ""));
+
+        current += Math.floor(Math.random() * 8);
+
+        saved.textContent =
+            current.toLocaleString();
+
+    }, 5000);
+
+</script>
+
+</body>
+</html>
